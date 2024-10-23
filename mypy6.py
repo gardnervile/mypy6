@@ -41,12 +41,18 @@ def on_password_change(edit, new_password):
     rating_text.set_text(f"Рейтинг пароля: {score}")
 
 
-ask = urwid.Edit("Введите пароль: ")
-rating_text = urwid.Text("Рейтинг пароля: 0")
+def main():
+    ask = urwid.Edit("Введите пароль: ")
+    global rating_text
+    rating_text = urwid.Text("Рейтинг пароля: 0")
 
-menu = urwid.Pile([ask, rating_text])
-menu = urwid.Filler(menu, valign='top')
+    menu = urwid.Pile([ask, rating_text])
+    menu = urwid.Filler(menu, valign='top')
 
-urwid.connect_signal(ask, 'change', on_password_change)
+    urwid.connect_signal(ask, 'change', on_password_change)
 
-urwid.MainLoop(menu).run()
+    urwid.MainLoop(menu).run()
+
+
+if __name__ == "__main__":
+    main()
